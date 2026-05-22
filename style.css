@@ -1,0 +1,306 @@
+/* --- CSS Reset & Variables --- */
+:root {
+  --clr-green-200: hsl(148, 38%, 91%);
+  --clr-green-600: hsl(169, 82%, 27%);
+  --clr-green-700: hsl(169, 82%, 18%); /* Darker shade for hovers */
+  --clr-red: hsl(0, 66%, 54%);
+  --clr-white: hsl(0, 0%, 100%);
+  --clr-grey-500: hsl(186, 15%, 59%);
+  --clr-grey-900: hsl(187, 24%, 22%);
+  
+  --ff-primary: 'Karla', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--ff-primary);
+  font-size: 16px;
+  background-color: var(--clr-green-200);
+  color: var(--clr-grey-900);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  position: relative;
+}
+
+/* --- Container Styling --- */
+.form-container {
+  background-color: var(--clr-white);
+  padding: 2.5rem;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 740px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+  margin-bottom: 2rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.75rem;
+  letter-spacing: -1px;
+}
+
+/* --- Layout Grid Elements --- */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.form-group label {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+
+.required {
+  color: var(--clr-green-600);
+  margin-left: 0.25rem;
+}
+
+/* --- Input Styling (Text, Email, Textarea) --- */
+input[type="text"],
+input[type="email"],
+textarea {
+  font-family: var(--ff-primary);
+  font-size: 1.125rem;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid var(--clr-grey-500);
+  border-radius: 0.5rem;
+  color: var(--clr-grey-900);
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:max-focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: var(--clr-green-600);
+  box-shadow: 0 0 0 1px var(--clr-green-600);
+}
+
+input[type="text"]:hover,
+input[type="email"]:hover,
+textarea:hover {
+  border-color: var(--clr-green-600);
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* --- Radio Group & Cards --- */
+.query-row {
+  margin-top: 0.25rem;
+}
+
+.radio-card {
+  border: 1px solid var(--clr-grey-500);
+  padding: 0.85rem 1.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  font-weight: 400 !important;
+  font-size: 1.125rem;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.radio-card:hover {
+  border-color: var(--clr-green-600);
+}
+
+.radio-card.active {
+  background-color: var(--clr-green-200);
+  border-color: var(--clr-green-600);
+}
+
+/* Hiding default styling but keeping standard accessibility hooks */
+.radio-card input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.custom-radio {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--clr-grey-500);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  background-color: var(--clr-white);
+}
+
+.radio-card input[type="radio"]:checked ~ .custom-radio {
+  border-color: var(--clr-green-600);
+}
+
+.radio-card input[type="radio"]:checked ~ .custom-radio::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--clr-green-600);
+}
+
+/* --- Checkbox / Consent Option --- */
+.checkbox-group {
+  margin: 2rem 0;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  cursor: pointer;
+  font-size: 1rem;
+  position: relative;
+}
+
+.checkbox-container input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.custom-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--clr-grey-500);
+  border-radius: 3px;
+  display: inline-block;
+  flex-shrink: 0;
+  margin-top: 3px;
+  position: relative;
+  background-color: var(--clr-white);
+}
+
+.checkbox-container input[type="checkbox"]:checked ~ .custom-checkbox {
+  border-color: var(--clr-green-600);
+  background-image: url('./assets/images/icon-checkbox-check.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* --- Error State Overrides --- */
+.error-message {
+  color: var(--clr-red);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  display: none;
+}
+
+input.input-error,
+textarea.input-error {
+  border-color: var(--clr-red) !important;
+}
+
+/* --- Submit Button --- */
+.submit-btn {
+  width: 100%;
+  background-color: var(--clr-green-600);
+  color: var(--clr-white);
+  border: none;
+  padding: 1rem;
+  font-family: var(--ff-primary);
+  font-size: 1.125rem;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: var(--clr-grey-900);
+}
+
+/* --- Success Toast Alert --- */
+.success-toast {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--clr-grey-900);
+  color: var(--clr-green-200);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  width: calc(100% - 2rem);
+  max-width: 450px;
+  z-index: 1000;
+  opacity: 0;
+  transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s;
+}
+
+.success-toast.show {
+  top: 1.5rem;
+  opacity: 1;
+}
+
+.toast-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--clr-white);
+}
+
+.toast-header strong {
+  font-size: 1.125rem;
+}
+
+.success-toast p {
+  font-size: 0.875rem;
+  color: var(--clr-green-200);
+}
+
+/* --- Attribution Footer --- */
+.attribution {
+  font-size: 0.6875rem;
+  text-align: center;
+  margin-top: auto;
+}
+.attribution a {
+  color: var(--clr-green-600);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* --- Responsive Layout (Mobile Override) --- */
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-container {
+    padding: 1.5rem;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+}
